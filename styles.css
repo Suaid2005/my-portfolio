@@ -1,4 +1,4 @@
-/* General Styles */
+/* General Page Load Animation */
 body {
     font-family: 'Montserrat', sans-serif;
     background: #0a0a0a;
@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 0;
     opacity: 0;
-    animation: fadeIn 1.2s ease-in-out forwards;
+    animation: fadeInPage 1s ease-in-out forwards;
 }
 
 /* Header */
@@ -15,6 +15,9 @@ header {
     background: linear-gradient(to right, #1a1a1a, #333333);
     padding: 40px;
     box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: slideFadeIn 1s ease-out forwards 0.5s;
 }
 
 /* Profile */
@@ -23,9 +26,9 @@ header {
     border-radius: 50%;
     border: 4px solid #000000;
     box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3);
-    transform: scale(0.8) translateY(-20px);
+    transform: scale(0.5);
     opacity: 0;
-    animation: zoomFade 1.2s ease-out forwards 0.5s;
+    animation: zoomFade 1.2s ease-out forwards 0.8s;
 }
 
 /* Sections */
@@ -38,8 +41,14 @@ section {
     box-shadow: 0px 5px 20px rgba(255, 255, 255, 0.1);
     opacity: 0;
     transform: translateY(50px);
-    animation: slideUpFade 1.2s ease-out forwards 0.7s;
+    animation: slideUpFade 1s ease-out forwards;
 }
+
+/* Delayed animation for each section */
+.about { animation-delay: 1s; }
+.skills { animation-delay: 1.2s; }
+.blog { animation-delay: 1.4s; }
+.contact { animation-delay: 1.6s; }
 
 /* Headings */
 h2 {
@@ -47,7 +56,7 @@ h2 {
     font-weight: 600;
     transform: translateY(10px);
     opacity: 0;
-    animation: fadeIn 1.2s ease-in-out forwards 1s;
+    animation: fadeIn 1s ease-in-out forwards 1.3s;
 }
 
 /* Skills */
@@ -66,29 +75,46 @@ ul {
     color: #000;
     transform: scale(0.95);
     transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    opacity: 0;
+    animation: fadeInScale 1s ease-out forwards;
 }
+
+.skills li:nth-child(1) { animation-delay: 1.2s; }
+.skills li:nth-child(2) { animation-delay: 1.3s; }
+.skills li:nth-child(3) { animation-delay: 1.4s; }
+.skills li:nth-child(4) { animation-delay: 1.5s; }
 
 .skills li:hover {
     transform: scale(1.05);
     box-shadow: 5px 5px 15px rgba(255, 255, 255, 0.2);
 }
 
-/* Blog Images */
+/* Blog Images with Staggered Effect */
 .blog .collage img {
     width: 30%;
     max-width: 200px;
     border-radius: 10px;
     box-shadow: 0px 5px 20px rgba(255, 255, 255, 0.1);
     opacity: 0;
-    transform: scale(0.9);
-    animation: fadeInScale 1.2s ease-out forwards 0.8s;
+    transform: scale(0.8);
+    animation: fadeInScale 1s ease-out forwards;
 }
 
-/* Contact */
+.blog .collage img:nth-child(1) { animation-delay: 1.6s; }
+.blog .collage img:nth-child(2) { animation-delay: 1.7s; }
+.blog .collage img:nth-child(3) { animation-delay: 1.8s; }
+.blog .collage img:nth-child(4) { animation-delay: 1.9s; }
+
+/* Contact Links */
 .contact a {
     color: #f4a261;
     text-decoration: none;
     font-weight: 600;
+    transition: color 0.3s ease-in-out;
+}
+
+.contact a:hover {
+    color: #e76f51;
 }
 
 /* Buttons */
@@ -100,23 +126,29 @@ button {
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.4s ease, transform 0.3s ease;
+    transition: background 0.4s ease, transform 0.3s ease, box-shadow 0.4s ease-in-out;
 }
 
 button:hover {
     background: #e76f51;
     transform: translateY(-4px);
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.2);
 }
 
 /* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+@keyframes fadeInPage {
+    from { opacity: 0; transform: scale(1.05); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideFadeIn {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes zoomFade {
-    from { transform: scale(0.8) translateY(-20px); opacity: 0; }
-    to { transform: scale(1) translateY(0); opacity: 1; }
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
 @keyframes slideUpFade {
@@ -124,7 +156,12 @@ button:hover {
     to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 @keyframes fadeInScale {
-    from { opacity: 0; transform: scale(0.9); }
+    from { opacity: 0; transform: scale(0.8); }
     to { opacity: 1; transform: scale(1); }
 }
